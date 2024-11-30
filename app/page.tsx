@@ -1,6 +1,4 @@
-import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { Hero } from "@/components/ui/hero";
-import { Heart } from "lucide-react";
 
 export default function Home() {
   return (

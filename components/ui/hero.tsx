@@ -3,8 +3,6 @@ import React from "react";
 import { Spotlight } from "../ui/spotlight";
 import { AnimatedTooltip } from "./animated-tooltip";
 import { ToolTipPeople } from "@/lib/tooltipData";
-import { ContainerScroll } from "./container-scroll-animation";
-import Image from "next/image";
 import Ripple from "./ripple";
 
 export function Hero() {
