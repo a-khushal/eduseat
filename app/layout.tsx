@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Provider from "./providers";
+import Appbar from "@/components/ui/appbar";
 // import { ModeToggle } from "@/components/ui/mode-toggler";
 
 const geistSans = localFont({
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <Provider>
           {/* <ModeToggle /> */}
+          <Appbar/>
           {children}
         </Provider>
       </body>

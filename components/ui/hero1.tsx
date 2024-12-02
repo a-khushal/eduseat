@@ -10,7 +10,7 @@ export function Hero() {
           {/* Badge */}
           <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
             <span className="text-sm font-medium text-gray-600">
-              Trusted by 10,000+ Students
+              Trusted by 1000+ Students
             </span>
           </div>
 
