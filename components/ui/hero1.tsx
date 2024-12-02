@@ -4,6 +4,7 @@ import { GraduationCap, Stethoscope, Wrench } from 'lucide-react';
 export function Hero() {
   return (
     <div className="relative px-4 py-20 md:py-32">
+      <div className="absolute inset-0 bg-grid-small-black/[0.1] z-0"></div>
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Badge */}
