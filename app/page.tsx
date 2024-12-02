@@ -1,4 +1,4 @@
-import { Hero } from "@/components/ui/hero1";
+// import { Hero } from "@/components/ui/hero1";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Hero />
+      {/* <Hero /> */}
     </>
   )
 }
