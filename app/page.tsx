@@ -9,7 +9,9 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-small-black/[0.1] z-0"></div>
         </div>
       </div>
-      <Hero />
+      <div className="h-screen bg-gray-50 w-full">
+        <Hero />
+      </div>
     </>
   )
 }
