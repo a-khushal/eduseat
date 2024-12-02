@@ -3,7 +3,7 @@ import { Hero } from "@/components/ui/hero1";
 export default function Home() {
   return (
     <>
-      <div className="absolute min-h-screen bg-gray-50 w-full">
+      <div className="absolute min-h-screen bg-gray-50 w-full h-screen">
         <div className="absolute inset-0 gradient-background z-10"></div>
         <div className="h-screen w-full relative flex items-center justify-center bg-white">
           <div className="absolute inset-0 bg-grid-small-black/[0.1] z-0"></div>
