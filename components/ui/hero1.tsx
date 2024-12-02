@@ -64,7 +64,7 @@ export function Hero() {
                 <div className="bg-gradient-to-br from-orange-500 to-purple-500 w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4">
                   {feature.icon}
                 </div>
-                <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
+                <h3 className="font-semibold text-lg mb-2300 bg-red-">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
               </div>
             ))}
