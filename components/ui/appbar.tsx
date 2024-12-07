@@ -1,5 +1,8 @@
 "use client"
 
+import { useRouter } from "next/navigation";
+import { useAuth } from '@clerk/nextjs'
+
 // import React, { useState } from 'react';
 // import { Menu, X } from 'lucide-react';
 // import MobileMenu from './mobile-menu';
@@ -11,8 +14,15 @@ const Appbar = () => {
 //     setIsMobileMenuOpen(!isMobileMenuOpen);
 //   };
 
+  const router = useRouter();
+  const { signOut, userId, sessionId } = useAuth()
+
   return (
     <nav className="fixed w-full bg-transparent z-50 border-b border-gray-100">
+      <div className="text-black">
+        {/* {JSON.stringify(userId)}
+        {JSON.stringify(sessionId)} */}
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -23,12 +33,31 @@ const Appbar = () => {
           </div>
 
           <div className="md:flex md:items-center md:space-x-4">
-            <button className="text-gray-700 hover:text-gray-900 px-4 py-2 text-sm font-medium">
-              Sign Up
-            </button>
-            <button className="bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors">
-              Login
-            </button>
+            {!(userId && sessionId) ? (
+              <div>
+                <button 
+                  className="text-gray-700 hover:text-gray-900 px-4 py-2 text-sm font-medium" 
+                  onClick={() => router.push("/sign-up")}
+                >
+                  Sign Up
+                </button>
+                <button 
+                  className="bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors" 
+                  onClick={() => router.push("/sign-in")}
+                >
+                  Login
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button 
+                  className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-600 transition-colors" 
+                  onClick={() => {signOut()}}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Mobile menu button */}

@@ -30,10 +30,13 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Provider>
-            {/* <ModeToggle /> */}
-            {children}
-          </Provider>
+          {/* <div className="absolute min-h-screen bg-gray-50 w-full">
+            <div className="absolute inset-0 gradient-background z-10"></div> */}
+            <Provider>
+              {/* <ModeToggle /> */}
+              {children}
+            </Provider>
+          {/* </div> */}
         </body>
       </html>
   );
