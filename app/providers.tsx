@@ -7,7 +7,13 @@ export default function Provider({ children }: {
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider 
+      appearance={{
+        layout: {
+          unsafe_disableDevelopmentModeWarnings: true,
+        },
+      }}
+    >
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
