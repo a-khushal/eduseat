@@ -1,11 +1,10 @@
 import Appbar from "@/components/ui/appbar";
 import { Hero } from "@/components/ui/hero1";
-
 export default function Home() {
   return (
     <>
       <div className="absolute min-h-screen bg-gray-50 w-full">
-        <div className="absolute inset-0 gradient-background z-10"></div>
+        <div className="absolute inset-0 gradient-background z-10 pointer-events-none"></div>
         <Appbar />
         <Hero />
       </div>

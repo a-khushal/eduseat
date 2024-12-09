@@ -1,11 +1,32 @@
+"use client"
+
 import React from 'react';
 import { GraduationCap, Stethoscope, Wrench } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
+
+interface Feature {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  link?: string;
+}
 
 export function Hero() {
   return (
-    <div className="relative px-4 py-20 md:py-32">
-      <div className="absolute inset-0 bg-grid-small-black/[0.1] z-0"></div>
-      <div className="max-w-6xl mx-auto">
+    <div className="relative min-h-screen px-4 py-20 md:py-32 overflow-hidden">
+      {/* Background Image */}
+      <Image
+        src="/images/root.avif"
+        alt="Students collaborating"
+        fill
+        className="object-cover"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/70 to-white/30 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-grid-small-black/[0.1] pointer-events-none"></div>
+
+      <div className="relative max-w-6xl mx-auto z-10">
         <div className="flex flex-col items-center text-center space-y-8">
           {/* Badge */}
           <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
@@ -27,7 +48,7 @@ export function Hero() {
               </span>{' '}
               Excellence
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
               Expert counseling and guidance to help you make informed decisions about your future in medical and engineering careers.
             </p>
           </div>
@@ -35,9 +56,9 @@ export function Hero() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <button className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-medium">
-                Book a councelling session
+              Book a counselling session
             </button>
-            <button className="px-6 py-2 text-orange-600 hover:text-orange-700 font-medium transition-colors">
+            <button className="px-6 py-2 text-orange-600 hover:text-orange-700 font-medium transition-colors bg-white/50 backdrop-blur-sm rounded-lg">
               Explore Programs
             </button>
           </div>
@@ -53,20 +74,24 @@ export function Hero() {
               {
                 icon: <Stethoscope className="w-6 h-6" />,
                 title: "Medical Pathways",
-                description: "Comprehensive medical career guidance"
+                description: "Comprehensive medical career guidance",
+                link: "/medical",
               },
               {
                 icon: <Wrench className="w-6 h-6" />,
                 title: "Engineering Focus",
-                description: "Specialized engineering stream advice"
+                description: "Specialized engineering stream advice",
+                link: "/engineering"
               }
             ].map((feature, index) => (
-              <div key={index} className="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg">
-                <div className="bg-gradient-to-br from-orange-500 to-purple-500 w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="font-semibold text-lg mb-2300 text-black">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+              <div key={index} className="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
+                {feature.link ? (
+                  <Link href={feature.link} className="block h-full no-underline">
+                    <FeatureContent feature={feature} />
+                  </Link>
+                ) : (
+                  <FeatureContent feature={feature} />
+                )}
               </div>
             ))}
           </div>
@@ -75,3 +100,21 @@ export function Hero() {
     </div>
   );
 }
+
+function FeatureContent({ feature }: { feature: Feature }) {
+  return (
+    <div className="h-full flex flex-col">
+      <div className="bg-gradient-to-br from-orange-500 to-purple-500 w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4">
+        {feature.icon}
+      </div>
+      <h3 className="font-semibold text-lg mb-2 text-gray-900">{feature.title}</h3>
+      <p className="text-gray-700 flex-grow">{feature.description}</p>
+      {feature.link && (
+        <div className="mt-4 text-blue-600 hover:text-blue-800 transition-colors">
+          Learn more →
+        </div>
+      )}
+    </div>
+  );
+}
+
