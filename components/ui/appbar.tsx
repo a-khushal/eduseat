@@ -1,6 +1,6 @@
 "use client"
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from '@clerk/nextjs'
 
 // import React, { useState } from 'react';
@@ -8,17 +8,18 @@ import { useAuth } from '@clerk/nextjs'
 // import MobileMenu from './mobile-menu';
 
 const Appbar = () => {
-//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  //   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-//   const toggleMobileMenu = () => {
-//     setIsMobileMenuOpen(!isMobileMenuOpen);
-//   };
+  //   const toggleMobileMenu = () => {
+  //     setIsMobileMenuOpen(!isMobileMenuOpen);
+  //   };
 
   const router = useRouter();
+  const pathname = usePathname();
   const { signOut, userId, sessionId } = useAuth()
 
   return (
-    <nav className="fixed w-full bg-transparent z-50 border-b border-gray-100">
+    <nav className="absolute w-full z-50">
       <div className="text-black">
         {/* {JSON.stringify(userId)}
         {JSON.stringify(sessionId)} */}
@@ -27,22 +28,37 @@ const Appbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              eduseat
-            </span>
+            {pathname === '/medical' ? (
+              <span onClick={() => router.push('/')}
+                className="hover:cursor-pointer text-2xl font-bold text-white">
+                edu<span className="text-orange-400">seat</span>
+              </span>
+            ) : pathname === '/engineering' ? (
+              <span onClick={() => router.push('/')}
+                className="hover:cursor-pointer text-2xl font-bold text-white">
+                edu<span className="text-blue-400">seat</span>
+              </span>
+            ) : (
+              <span
+                onClick={() => router.push('/')}
+                className="text-2xl hover:cursor-pointer font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
+              >
+                eduseat
+              </span>
+            )}
           </div>
 
           <div className="md:flex md:items-center md:space-x-4">
             {!(userId && sessionId) ? (
               <div>
-                <button 
-                  className="text-gray-700 hover:text-gray-900 px-4 py-2 text-sm font-medium" 
+                <button
+                  className="text-gray-700 hover:text-gray-900 px-4 py-2 text-sm font-medium"
                   onClick={() => router.push("/sign-up")}
                 >
                   Sign Up
                 </button>
-                <button 
-                  className="bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors" 
+                <button
+                  className="bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
                   onClick={() => router.push("/sign-in")}
                 >
                   Login
@@ -50,9 +66,9 @@ const Appbar = () => {
               </div>
             ) : (
               <div>
-                <button 
-                  className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-600 transition-colors" 
-                  onClick={() => {signOut()}}
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-600 transition-colors"
+                  onClick={() => { signOut() }}
                 >
                   Logout
                 </button>

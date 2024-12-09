@@ -48,7 +48,7 @@ export function Hero() {
               </span>{' '}
               Excellence
             </h1>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+            <p className="text-xl text-black pt-6 font-normal max-w-2xl mx-auto">
               Expert counseling and guidance to help you make informed decisions about your future in medical and engineering careers.
             </p>
           </div>

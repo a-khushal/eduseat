@@ -1,7 +1,7 @@
 import Image from "next/image"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import Appbar from "@/components/ui/appbar"
 
 export default function EngineeringPage() {
   return (
@@ -19,17 +19,7 @@ export default function EngineeringPage() {
       {/* Content */}
       <div className="relative z-10">
         {/* Navigation */}
-        <nav className="flex items-center justify-between p-6 lg:px-12">
-          <Link href="/" className="text-3xl font-bold text-white">
-            edu<span className="text-blue-400">seat</span>
-          </Link>
-          <div className="flex gap-4">
-            <Button variant="ghost" className="text-white hover:text-blue-200 hover:bg-white/10">
-              Sign Up
-            </Button>
-            <Button variant="outline" className="text-white border-white hover:bg-white hover:text-blue-900">Login</Button>
-          </div>
-        </nav>
+        <Appbar />
 
         {/* Hero Section */}
         <main className="container mx-auto px-4 py-20 lg:py-32">
