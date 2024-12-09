@@ -3,7 +3,7 @@
 import React from 'react';
 import { GraduationCap, Stethoscope, Wrench } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image'; 
 
 interface Feature {
   icon: React.ReactNode;
@@ -16,13 +16,13 @@ export function Hero() {
   return (
     <div className="relative min-h-screen px-4 py-20 md:py-32 overflow-hidden">
       {/* Background Image */}
-      <Image
+      {/* <Image
         src="/images/root.avif"
         alt="Students collaborating"
         fill
         className="object-cover"
         priority
-      />
+      /> */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/70 to-white/30 backdrop-blur-sm"></div>
       <div className="absolute inset-0 bg-grid-small-black/[0.1] pointer-events-none"></div>
 
