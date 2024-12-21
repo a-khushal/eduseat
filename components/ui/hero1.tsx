@@ -3,6 +3,7 @@
 import React from 'react';
 import { GraduationCap, Stethoscope, Wrench } from 'lucide-react';
 import Link from 'next/link';
+import { useUser } from '@clerk/nextjs';
 // import Image from 'next/image'; 
 
 interface Feature {
@@ -13,6 +14,9 @@ interface Feature {
 }
 
 export function Hero() {
+  const { isSignedIn } = useUser();
+  console.log(isSignedIn)
+
   return (
     <div className="relative min-h-screen px-4 py-20 md:py-32 overflow-hidden">
       {/* Background Image */}
@@ -55,9 +59,9 @@ export function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-medium">
+            {/* <button className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-medium">
               Book a counselling session
-            </button>
+            </button> */}
             <button className="px-6 py-2 text-orange-600 hover:text-orange-700 font-medium transition-colors bg-white/50 backdrop-blur-sm rounded-lg">
               Explore Programs
             </button>
@@ -66,11 +70,6 @@ export function Hero() {
           {/* Features */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12">
             {[
-              {
-                icon: <GraduationCap className="w-6 h-6" />,
-                title: "Expert Counselors",
-                description: "Guidance from experienced professionals"
-              },
               {
                 icon: <Stethoscope className="w-6 h-6" />,
                 title: "Medical Pathways",
@@ -82,11 +81,21 @@ export function Hero() {
                 title: "Engineering Focus",
                 description: "Specialized engineering stream advice",
                 link: "/engineering"
-              }
+              },
+              {
+                icon: <GraduationCap className="w-6 h-6" />,
+                title: "Yet to decide?",
+                description: "Book a councelling session",
+                link: "/"
+              },
             ].map((feature, index) => (
               <div key={index} className="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
-                {feature.link ? (
+                {feature.link && isSignedIn ? (
                   <Link href={feature.link} className="block h-full no-underline">
+                    <FeatureContent feature={feature} />
+                  </Link>
+                ) : feature.link && !isSignedIn ? (
+                  <Link href={"/sign-in"} className="block h-full no-underline">
                     <FeatureContent feature={feature} />
                   </Link>
                 ) : (
