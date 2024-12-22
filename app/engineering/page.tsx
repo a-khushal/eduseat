@@ -14,7 +14,7 @@ export default function EngineeringPage() {
         className="object-cover"
         priority
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-purple-900/70" />
+      <div className="absolute inset-0 bg-gradient-to-r  from-gray-900/80 to-gray-800/80" />
 
       {/* Content */}
       <div className="relative z-10">
@@ -54,7 +54,7 @@ export default function EngineeringPage() {
             {/* Why Choose Engineering Card */}
             <Card className="bg-white/10 backdrop-blur-md border-none text-white overflow-hidden group hover:bg-white/20 transition-all duration-300">
               <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-blue-300 mb-6 group-hover:text-blue-200">
+                <h2 className="text-3xl font-bold text-blue-400 mb-6 group-hover:text-blue-300">
                   Why Choose Engineering?
                 </h2>
                 <ul className="space-y-4 text-left">
@@ -77,7 +77,7 @@ export default function EngineeringPage() {
             {/* Our Engineering Programs Card */}
             <Card className="bg-white/10 backdrop-blur-md border-none text-white overflow-hidden group hover:bg-white/20 transition-all duration-300">
               <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-purple-300 mb-6 group-hover:text-purple-200">
+                <h2 className="text-3xl font-bold text-purple-400 mb-6 group-hover:text-purple-300">
                   Our Engineering Programs
                 </h2>
                 <ul className="space-y-4 text-left">
