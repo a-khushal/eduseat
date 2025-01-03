@@ -1,71 +1,116 @@
-"use client"
+"use client";
 
-import { ArrowUpRight } from "lucide-react"
-import Image from "next/image"
+import { AppBar } from '@/components/ui/appbar1';
+import { motion } from 'framer-motion';
 
-export default function HeroPage() {
+interface AnimatedWordProps {
+  text: string;
+  delay: number;
+  yFrom: number;
+  className?: string;
+}
+
+export function AnimatedWord({ text, delay, yFrom, className }: AnimatedWordProps) {
   return (
-    <div className="h-screen bg-white">
-        <div className="mx-72 pt-48 text-black">
-            <div className="grid grid-cols-[60%_40%] gap-8 relative">
-                <Container1 />
-                <Container2 />
+    <motion.span
+      className={`inline-block whitespace-pre py-1 ${className}`}
+      initial={{ opacity: 0, y: yFrom }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.8,
+        delay,
+        ease: [0.2, 0.65, 0.3, 0.9],
+      }}
+    >
+      {text}{' '}
+    </motion.span>
+  );
+}
+function AnnouncementBadge() {
+    return (
+        <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
+            className="flex items-center justify-center bg-red-100 px-4 py-1 rounded-full w-fit"
+        >
+        <div className="text-lg font-medium text-red-600 flex items-center">
+            Trusted by 1000+ students
+        </div>
+        </motion.div>
+    );
+}
+
+function SubTagLine() {
+    return (
+        <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 8 * 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+            className="flex items-center justify-center w-fit"
+        >
+            <div className="text-xl font-medium text-slate-500 flex flex-col items-center text-center gap-1">
+                <div>Simplifying the Complex Path</div>
+                <div>to Secure Your Seat at Top Institutions.</div>
+            </div>
+        </motion.div>
+    );
+}
+
+export default function App() {
+  const firstLine = [
+    { word: "Your", className: "" },
+    { word: "Path", className: "" },
+    { word: "to", className: "" },
+    { word: "Engineering", className: "bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent" },
+  ];
+  const secondLine = [
+    { word: "and", className: "" },
+    { word: "Medical", className: "bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent" },
+    { word: "Excellence", className: "" },
+  ];
+
+  return (
+    <div className='h-screen bg-white'>
+        <div className='w-1/2'>
+            <AppBar />
+        </div>
+        <div className="min-h-screen flex items-center justify-center bg-white text-black">
+            <div className='flex flex-col items-center justify-center'>
+                <div className='mb-8'>
+                    <AnnouncementBadge />
+                </div>
+                <div className="text-center">
+                    <h1 className="text-6xl font-bold tracking-tight">
+                        <div className="overflow-hidden">
+                        {firstLine.map((item, index) => (
+                            <AnimatedWord
+                            key={item.word + index}
+                            text={item.word}
+                            delay={(index + 1) * 0.2}
+                            yFrom={50}
+                            className={item.className}
+                            />
+                        ))}
+                        </div>
+                        <div className="overflow-hidden">
+                        {secondLine.map((item, index) => (
+                            <AnimatedWord
+                            key={item.word + index}
+                            text={item.word}
+                            delay={(firstLine.length + index + 1) * 0.2}
+                            yFrom={50}
+                            className={item.className}
+                            />
+                        ))}
+                        </div>
+                    </h1>
+                </div>
+                <div className='mt-5'>
+                    <SubTagLine />
+                </div>
             </div>
         </div>
     </div>
-  )
-}
-
-const Container1 = () => {
-    return (
-        <div>
-            <h1 className="text-7xl font-normal leading-tight">
-                YOUR PATH TO ENGINEERING AND MEDICAL EXCELLENCE
-            </h1>
-            <p className="text-lg mt-3 leading-relaxed">
-                Expert counseling and guidance to help you make informed decisions about your future in medical and engineering careers.
-            </p>
-            <div className="flex justify-between gap-8 mt-20">
-                <div className="flex">
-                    <div className="w-22">
-                        <button className="px-10 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-3xl shadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-medium text-2xl">
-                            Get Started
-                        </button>
-                    </div>
-                    <div>
-                        <ArrowUpRight className="w-14 h-14 rounded-full text-white bg-gradient-to-r from-purple-600 to-blue-600 hadow-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-medium hover:cursor-pointer" />
-                    </div>
-                </div>
-                <div className="relative inline-block">
-                    <Image 
-                        src="/images/college2.jpg" 
-                        alt="college" 
-                        width={300} 
-                        height={250} 
-                        className="rounded-3xl"
-                    />
-                    <div className="absolute top-6 right-4 max-w-[200px] bg-white rounded-2xl p-3 shadow-md">
-                        <p className="text-sm text-zinc-900">
-                            Discover your path to success with eduseat!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-
-const Container2 = () => {
-    return (
-        <div className="relative w-full h-full">
-            <Image
-                src="/images/college1.jpg"
-                alt="college"
-                layout="fill" 
-                objectFit="cover" 
-                className="rounded-3xl absolute"
-            />
-        </div>
-    )
+  );
 }
