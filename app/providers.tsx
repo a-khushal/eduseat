@@ -1,5 +1,6 @@
 "use client"
 
+import Appbar from "@/components/ui/appbar1"
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import { ClerkProvider } from "@clerk/nextjs"
 
@@ -20,6 +21,7 @@ export default function Provider({ children }: {
         enableSystem
         disableTransitionOnChange
       >
+        <Appbar />
         {children}
       </ThemeProvider>
     </ClerkProvider>

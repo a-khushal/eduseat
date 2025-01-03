@@ -1,6 +1,6 @@
 "use client";
 
-import { AppBar } from '@/components/ui/appbar1';
+import { Footer } from '@/components/ui/footer';
 import { motion } from 'framer-motion';
 
 interface AnimatedWordProps {
@@ -34,7 +34,7 @@ function AnnouncementBadge() {
             transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
             className="flex items-center justify-center bg-red-100 px-4 py-1 rounded-full w-fit"
         >
-        <div className="text-lg font-medium text-red-600 flex items-center">
+        <div className="text-md font-medium text-red-600 flex items-center">
             Trusted by 1000+ students
         </div>
         </motion.div>
@@ -72,43 +72,45 @@ export default function App() {
 
   return (
     <div className='h-screen bg-white'>
-        <div className='w-1/2'>
-            <AppBar />
-        </div>
-        <div className="min-h-screen flex items-center justify-center bg-white text-black">
-            <div className='flex flex-col items-center justify-center'>
-                <div className='mb-8'>
-                    <AnnouncementBadge />
-                </div>
-                <div className="text-center">
-                    <h1 className="text-6xl font-bold tracking-tight">
-                        <div className="overflow-hidden">
-                        {firstLine.map((item, index) => (
-                            <AnimatedWord
-                            key={item.word + index}
-                            text={item.word}
-                            delay={(index + 1) * 0.2}
-                            yFrom={50}
-                            className={item.className}
-                            />
-                        ))}
-                        </div>
-                        <div className="overflow-hidden">
-                        {secondLine.map((item, index) => (
-                            <AnimatedWord
-                            key={item.word + index}
-                            text={item.word}
-                            delay={(firstLine.length + index + 1) * 0.2}
-                            yFrom={50}
-                            className={item.className}
-                            />
-                        ))}
-                        </div>
-                    </h1>
-                </div>
-                <div className='mt-5'>
-                    <SubTagLine />
-                </div>
+        <div className="min-h-screen mt-20 flex items-center justify-center bg-white text-black">
+          <div>
+              <div className='flex flex-col items-center justify-center'>
+                  <div className='mb-8'>
+                      <AnnouncementBadge />
+                  </div>
+                  <div className="text-center">
+                      <h1 className="text-6xl font-bold tracking-tight">
+                          <div className="overflow-hidden">
+                          {firstLine.map((item, index) => (
+                              <AnimatedWord
+                              key={item.word + index}
+                              text={item.word}
+                              delay={(index + 1) * 0.2}
+                              yFrom={50}
+                              className={item.className}
+                              />
+                          ))}
+                          </div>
+                          <div className="overflow-hidden">
+                          {secondLine.map((item, index) => (
+                              <AnimatedWord
+                              key={item.word + index}
+                              text={item.word}
+                              delay={(firstLine.length + index + 1) * 0.2}
+                              yFrom={50}
+                              className={item.className}
+                              />
+                          ))}
+                          </div>
+                      </h1>
+                  </div>
+                  <div className='mt-5'>
+                      <SubTagLine />
+                  </div>
+              </div>
+              <div className='w-screen'>
+                <Footer/>
+              </div>
             </div>
         </div>
     </div>
